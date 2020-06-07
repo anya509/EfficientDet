@@ -290,7 +290,7 @@ def mb_conv_block(inputs, block_args, activation, drop_rate=None, prefix='', fre
 
     return x
 
-
+# see how the default resolution is passed-----
 def EfficientNet(width_coefficient,
                  depth_coefficient,
                  default_resolution,
