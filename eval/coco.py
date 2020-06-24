@@ -97,16 +97,16 @@ def evaluate(generator, model, threshold=0.01):
     json.dump(image_ids, open('{}_processed_image_ids.json'.format(generator.set_name), 'w'), indent=4)
 
     # # load results in COCO evaluation tool
-    # coco_true = generator.coco
-    # coco_pred = coco_true.loadRes('{}_bbox_results.json'.format(generator.set_name))
+    coco_true = generator.coco
+    coco_pred = coco_true.loadRes('{}_bbox_results.json'.format(generator.set_name))
     #
     # # run COCO evaluation
-    # coco_eval = COCOeval(coco_true, coco_pred, 'bbox')
-    # coco_eval.params.imgIds = image_ids
-    # coco_eval.evaluate()
-    # coco_eval.accumulate()
-    # coco_eval.summarize()
-    # return coco_eval.stats
+    coco_eval = COCOeval(coco_true, coco_pred, 'bbox')
+    coco_eval.params.imgIds = image_ids
+    coco_eval.evaluate()
+    coco_eval.accumulate()
+    coco_eval.summarize()
+    return coco_eval.stats
 
 
 class Evaluate(keras.callbacks.Callback):
